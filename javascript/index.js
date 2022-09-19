@@ -11,6 +11,9 @@ let domLoginForm
 let domLoginUser
 let domLoginPass
 let domLoginBtn
+let domBusqueda
+let domTextoABuscar
+let domBtnBusqueda
 let domRegistroForm
 let domRegistroUser
 let domRegistroPass
@@ -249,6 +252,9 @@ function domElementsInit() {
     domLoginUser = document.getElementById("login-user")
     domLoginPass = document.getElementById("login-pass")
     domLoginBtn = document.getElementById("login-btn")
+    domBusqueda = document.getElementById("busqueda-container")
+    domTextoABuscar = document.getElementById("texto-a-buscar")
+    domBtnBusqueda = document.getElementById("btn-busqueda")
     domRegistroForm = document.getElementById("registro-form")
     domRegistroUser = document.getElementById("registro-user")
     domRegistroPass = document.getElementById("registro-pass")
@@ -271,8 +277,11 @@ function gestionarLogin(event) {
     let objectUser = new Usuario(domLoginUser.value, domLoginPass.value, false)
     domLoginForm.reset();
     domLoginTitle.innerHTML = ""
-    domLoginTitle.innerHTML += `Bienvenido ${objectUser.user}!`
     if (validarLogin(objectUser.user, objectUser.password)) {
+        domLoginTitle.innerHTML += `Bienvenido ${objectUser.user}!`
+        domBusqueda = document.createElement("div")
+        domBusqueda.innerHTML = `
+        `
         !objectUser.esAdmin() ? desplegarProcedimientoCompra(objectUser.user) : desplegarProcedimientoAdmin(objectUser.user)
     }
     else {
